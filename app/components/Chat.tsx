@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 "use client";
 
 import { useState, useRef, useEffect } from "react";
@@ -33,8 +35,8 @@ export default function Chat() {
         e.preventDefault();
         if (!input.trim()) return;
 
-        const userMessage: Message = { 
-            role: "user", 
+        const userMessage: Message = {
+            role: "user",
             content: input,
             timestamp: new Date()
         };
@@ -115,7 +117,7 @@ export default function Chat() {
                 content: data.response,
                 timestamp: new Date()
             };
-            
+
             setMessages(prev => [...prev, regeneratedMessage]);
         } catch (error) {
             console.error("Error:", error);
@@ -152,25 +154,23 @@ export default function Chat() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.3 }}
-                            key={index} 
+                            key={index}
                             className={`flex items-start gap-2 md:gap-3 lg:gap-4 ${message.role === "user" ? "flex-row-reverse" : ""}`}
                         >
-                            <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                                message.role === "user" 
-                                    ? "bg-blue-500 text-white" 
+                            <div className={`w-8 h-8 rounded-full flex items-center justify-center ${message.role === "user"
+                                    ? "bg-blue-500 text-white"
                                     : "bg-purple-500 dark:bg-purple-600 text-white"
-                            }`}>
-                                {message.role === "user" 
-                                    ? <FiUser size={20} /> 
+                                }`}>
+                                {message.role === "user"
+                                    ? <FiUser size={20} />
                                     : <RiRobot2Fill size={20} />
                                 }
                             </div>
                             <div className={`flex flex-col ${message.role === "user" ? "items-end" : "items-start"} max-w-[90%] xs:max-w-[85%] sm:max-w-[80%] md:max-w-[75%] lg:max-w-[70%]`}>
-                                <div className={`p-2 md:p-3 lg:p-4 rounded-xl md:rounded-2xl ${
-                                    message.role === "user" 
-                                        ? "bg-blue-500 text-white" 
+                                <div className={`p-2 md:p-3 lg:p-4 rounded-xl md:rounded-2xl ${message.role === "user"
+                                        ? "bg-blue-500 text-white"
                                         : "bg-gray-100 dark:bg-gray-700 dark:text-white"
-                                } shadow-md transition-all duration-300 ease-in-out hover:shadow-lg text-xs sm:text-sm md:text-base`}>
+                                    } shadow-md transition-all duration-300 ease-in-out hover:shadow-lg text-xs sm:text-sm md:text-base`}>
                                     <div className="whitespace-pre-wrap">
                                         {message.role === "assistant" ? (
                                             <motion.span
@@ -239,7 +239,7 @@ export default function Chat() {
                             </div>
                             <div className="flex flex-col items-start max-w-[90%] xs:max-w-[85%] sm:max-w-[80%] md:max-w-[75%] lg:max-w-[70%]">
                                 <div className="p-2 md:p-3 lg:p-4 rounded-xl md:rounded-2xl bg-gray-100 dark:bg-gray-700 dark:text-white shadow-md">
-                                    <motion.div 
+                                    <motion.div
                                         animate={{ scale: [1, 1.2, 1] }}
                                         transition={{ repeat: Infinity, duration: 1.5 }}
                                         className="flex items-center gap-1"
@@ -254,8 +254,8 @@ export default function Chat() {
                     <div ref={messagesEndRef} />
                 </div>
             </div>
-            <motion.form 
-                onSubmit={handleSubmit} 
+            <motion.form
+                onSubmit={handleSubmit}
                 className="fixed bottom-0 left-0 right-0 max-w-4xl mx-auto bg-gradient-to-b from-white/95 to-white/90 dark:from-gray-800/95 dark:to-gray-800/90 p-2 md:p-3 lg:p-4 rounded-t-lg shadow-lg z-20 backdrop-blur-md border-t border-gray-200 dark:border-gray-700"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -274,11 +274,10 @@ export default function Chat() {
                         disabled={isLoading || !input.trim()}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className={`px-3 md:px-4 py-2 md:py-3 rounded-xl transition-all duration-200 ease-in-out shadow-lg hover:shadow-xl disabled:shadow-none font-medium text-xs sm:text-sm md:text-base ${
-                            input.trim() 
-                                ? "bg-blue-500 dark:bg-purple-500 hover:bg-blue-600 dark:hover:bg-purple-600 text-white" 
+                        className={`px-3 md:px-4 py-2 md:py-3 rounded-xl transition-all duration-200 ease-in-out shadow-lg hover:shadow-xl disabled:shadow-none font-medium text-xs sm:text-sm md:text-base ${input.trim()
+                                ? "bg-blue-500 dark:bg-purple-500 hover:bg-blue-600 dark:hover:bg-purple-600 text-white"
                                 : "bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 cursor-not-allowed"
-                        }`}
+                            }`}
                     >
                         {isLoading ? (
                             <motion.div
